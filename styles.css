@@ -9,8 +9,13 @@ h1 {
     font-family:'Helvetica', 'Sans-Serif';
 }
 h2 {
-    color:  #c8c8c8;
+    color:  #000;
     font-size: 2em;
+    font-family:'Helvetica', 'Sans-Serif';
+}
+h3 {
+    color:  #000;
+    font-size: 1em;
     font-family:'Helvetica', 'Sans-Serif';
 }
 p {
