@@ -9,7 +9,7 @@
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
   <!-- Add CSS styling info for the map -->
   <style type="text/css">
-      #map {
+      #mapId {
         height: 600px
       }
 
@@ -31,7 +31,7 @@
   <br>
 
   <!-- Add a div to give the map somewhere to go -->
-  <div id='map'></div>
+  <div id='mapId'></div>
   <!-- Add an information window -->
   <div class='map-overlay' id='features'>
     <h2>US population density</h2>
@@ -46,9 +46,9 @@
 
     // Create a variable called "map" to house your map
     var map = new mapboxgl.Map({
-      container: 'map'
       // map style URL from MapBox Studio
-      style: "mapbox://styles/jstrzempko/cknwid05q2ge917rhow9a2c3k"
+      style: "mapbox://styles/jstrzempko/cknwid05q2ge917rhow9a2c3k",
+      container: 'mapId'
     });
 
     map.on('load', function() {
@@ -102,7 +102,7 @@
         legend.appendChild(item);
       }
 
-      // change info window on hover
+      // add the information window
       map.on('mousemove', function(e) {
         var states = map.queryRenderedFeatures(e.point, {
           layers: ['statedata']
@@ -121,10 +121,6 @@
         }
       });
     });
-
-    // Add a legend
-
-    // Add the information window
 
   </script>
 </body>
