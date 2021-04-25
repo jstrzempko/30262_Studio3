@@ -51,6 +51,7 @@
     zoom: 12 // starting zoom
   });
 
+  // add hospital point feature as geojson
   var hospitals = {
   type: 'FeatureCollection',
   features: [
@@ -66,6 +67,7 @@
     { type: 'Feature', properties: { Name: 'UK Medical Center', Address: '800 Rose St' }, geometry: { type: 'Point', coordinates: [-84.508205, 38.031254] } }
   ]
   };
+  // add library point feature as geojson
   var libraries = {
   type: 'FeatureCollection',
   features: [
@@ -78,6 +80,7 @@
   ]
   };
 
+  // only load the point features after the map has been loaded
   map.on('load', function() {
     map.addLayer({
       id: 'hospitals',
@@ -106,7 +109,27 @@
     });
   });
 
-  
+  // add a popup when point features are clicked on
+  var popup = new mapboxgl.Popup();
+
+  // render the popup with information when features hovered over
+  map.on('mousemove', function(e) {
+    var features = map.queryRenderedFeatures(e.point, { layers: ['hospitals', 'libraries'] });
+    if (!features.length) {
+      popup.remove();
+      return;
+    }
+    var feature = features[0];
+
+    popup.setLngLat(feature.geometry.coordinates)
+      .setHTML(feature.properties.Name)
+      .addTo(map);
+
+      map.getCanvas().style.cursor = features.length ? 'pointer' : '';
+    });
+
+
+
 
 
 </script>
