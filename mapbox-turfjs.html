@@ -43,6 +43,16 @@
   // access token
   mapboxgl.accessToken = 'pk.eyJ1IjoianN0cnplbXBrbyIsImEiOiJja2xoN3FnaHMwMHVnMnVtZ3R4ZGhyMWlkIn0.A-mfTeGCl1XSWMWhimG5HA';
 
+  //initialize a map
+  var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/mapbox/light-v10', // stylesheet location
+    center: [-84.5, 38.05], // starting position in Lexington, KY
+    zoom: 12 // starting zoom
+  });
+
+  
+
 </script>
 </body>
 
