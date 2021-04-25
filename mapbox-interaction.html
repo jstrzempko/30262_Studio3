@@ -48,7 +48,7 @@
     mapboxgl.accessToken = 'pk.eyJ1IjoianN0cnplbXBrbyIsImEiOiJja2xoN3FnaHMwMHVnMnVtZ3R4ZGhyMWlkIn0.A-mfTeGCl1XSWMWhimG5HA';
     var map = new mapboxgl.Map({
       container: 'map', // container id
-      style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+      style: 'mapbox://styles/mapbox/outdoors-v11', // stylesheet location
       center: [-111.312026, 45.258260], // starting position [lng, lat]
       zoom: 11 // starting zoom
     });
@@ -56,7 +56,7 @@
     // Add a popup: https://docs.mapbox.com/mapbox-gl-js/example/popup/
     var popup = new mapboxgl.Popup({ closeOnClick: false })
       .setLngLat([-111.312026, 45.258260])
-      .setHTML('<h3>Welcome to Big Sky!</h3>')
+      .setHTML('<h2>Welcome to Big Sky!</h2>')
       .addTo(map);
 
     // Add a function that flies to a location: https://docs.mapbox.com/mapbox-gl-js/api/#map#flyto
