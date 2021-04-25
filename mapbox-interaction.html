@@ -37,8 +37,7 @@
   <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
   <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css" type="text/css">
 
-  <!-- Promise polyfill script is required -->
-  <!-- to use Mapbox GL Geocoder in IE 11. -->
+  <!-- Promise polyfill script is required to use Mapbox GL Geocoder in IE 11. -->
   <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 
@@ -59,9 +58,6 @@
       .setLngLat([-122.44, 37.76])
       .setHTML('<h3>Goodbye!</h3>')
       .addTo(map);
-
-    // Add pan and zoom controls: https://docs.mapbox.com/mapbox-gl-js/api/#map#addcontrol
-    map.addControl(new mapboxgl.NavigationControl());
 
     // Add a function that flies to a location: https://docs.mapbox.com/mapbox-gl-js/api/#map#flyto
     // fly with default options to null island
@@ -90,6 +86,9 @@
         mapboxgl: mapboxgl
       })
     );
+
+    // Add pan and zoom controls: https://docs.mapbox.com/mapbox-gl-js/api/#map#addcontrol
+    map.addControl(new mapboxgl.NavigationControl());
 
     // Add a geolocation button: https://docs.mapbox.com/mapbox-gl-js/api/#geolocatecontrol
 
