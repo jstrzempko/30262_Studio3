@@ -25,8 +25,12 @@
 </head>
 
 <body>
-  <div><h1>Studio Week 3 </h1></div>
-  <div><h5>Analyze data with Turf.js and Mapbox GL JS</h5></div>
+  <div>
+    <h1>Studio Week 3 </h1>
+  </div>
+  <div>
+    <h5>Analyze data with Turf.js and Mapbox GL JS</h5>
+  </div>
   <!-- Add multiple pages to web page-->
   <!-- active class displays the grey box around current page-->
   <ul>
@@ -239,7 +243,6 @@
       ]
     };
 
-    // only load the point features after the map has been loaded
     map.on('load', function() {
       map.addLayer({
         id: 'hospitals',
@@ -254,6 +257,7 @@
         },
         paint: {}
       });
+
       map.addLayer({
         id: 'libraries',
         type: 'symbol',
@@ -262,16 +266,23 @@
           data: libraries
         },
         layout: {
-          'icon-image': 'library-15'
+          'icon-image': 'library-15',
+          'icon-allow-overlap': true
         },
         paint: {}
       });
+
+      map.addSource('nearest-hospital', {
+        type: 'geojson',
+        data: {
+          'type': 'FeatureCollection',
+          'features': []
+        }
+      });
     });
 
-    // add a popup when point features are clicked on
     var popup = new mapboxgl.Popup();
 
-    // render the popup with information when features hovered over
     map.on('mousemove', function(e) {
       var features = map.queryRenderedFeatures(e.point, {
         layers: ['hospitals', 'libraries']
@@ -280,56 +291,46 @@
         popup.remove();
         return;
       }
+
       var feature = features[0];
-      // set the popup lat/lon to that of the point feature
-      popup.setLngLat(feature.geometry.coordinates)
+
+      popup
+        .setLngLat(feature.geometry.coordinates)
         .setHTML(feature.properties.Name)
         .addTo(map);
+
       map.getCanvas().style.cursor = features.length ? 'pointer' : '';
     });
 
-    // add a new source with id "nearest-hospital"
-    map.addSource('nearest-hospital', {
-      type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features: []
-      }
-    });
-
-    // add an event handler for when someone clicks on a library marker
     map.on('click', function(e) {
-      // Return any features from the 'libraries' layer whenever the map is clicked
       var libraryFeatures = map.queryRenderedFeatures(e.point, {
         layers: ['libraries']
       });
       if (!libraryFeatures.length) {
         return;
       }
+
       var libraryFeature = libraryFeatures[0];
 
-      // Using Turf, find the nearest hospital to the library clicked
       var nearestHospital = turf.nearest(libraryFeature, hospitals);
 
-      // If a nearest library is found
-      if (nearestHospital !== null) {
-        // Update the 'nearest-library' data source to include the nearest library
+      if (nearestHospital != null) {
         map.getSource('nearest-hospital').setData({
-          type: 'FeatureCollection',
-          features: [
-            nearestHospital
-          ]
+          'type': 'FeatureCollection',
+          'features': [nearestHospital]
         });
-        // Create a new circle layer from the 'nearest-library' data source
+
         map.addLayer({
-          id: 'nearest-hospital',
-          type: 'circle',
-          source: 'nearest-hospital',
-          paint: {
-            'circle-radius': 12,
-            'circle-color': '#8B0000'
-          }
-        }, 'hospitals');
+            id: 'nearest-hospital',
+            type: 'circle',
+            source: 'nearest-hospital',
+            paint: {
+              'circle-radius': 12,
+              'circle-color': '#8B0000'
+            }
+          },
+          'hospitals'
+        );
       }
     });
   </script>
