@@ -23,6 +23,11 @@
     font-size: 1em;
     color:  #000;
   }
+  h4 {
+      color:  #000;
+      font-size: 1em;
+      font-family:'Helvetica', 'Sans-Serif';
+  }
   p {
     font-size: 0.85em;
     margin: 10px;
@@ -163,12 +168,12 @@
           document.getElementById('pd').innerHTML =
           '<h3><strong>' +
           states[0].properties.name +
-          '</strong></h3><p><strong><em>' +
+          '</strong></h3><h4><strong><em>' +
           states[0].properties.density +
-          '</strong> people per square mile</em></p>';
+          '</strong> people per square mile</em></h4>';
         } else {
           document.getElementById('pd').innerHTML =
-            '<p>Hover over a state!</p>';
+            '<h4>Hover over a state!</h4>';
         }
       });
     });
