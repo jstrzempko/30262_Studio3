@@ -9,67 +9,75 @@
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
   <!-- Add CSS styling info for the map -->
   <style type="text/css">
-  body {
-    margin: 0;
-    padding: 0;
-  }
-  h2 {
-    margin: 10px;
-    font-size: 1.2em;
-    color:  #000;
-  }
-  h3 {
-    margin: 10px;
-    font-size: 1em;
-    color:  #000;
-  }
-  h4 {
-    margin:10px;
-      color:  #000;
-      font-size: 1em;
-      font-family:'Helvetica', 'Sans-Serif';
-  }
-  p {
-    font-size: 0.85em;
-    margin: 10px;
-    text-align: left;
-    color:  #000;
-  }
-  .map-overlay {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.8);
-    margin-right: 20px;
-    font-family: Arial, sans-serif;
-    overflow: auto;
-    border-radius: 3px;
-  }
-  #map {
-    height: 600px;
-  }
-  #features {
-    top: 400px;
-    height: 150px;
-    margin-top: 20px;
-    width: 250px;
-  }
-  #legend {
-    padding: 10px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    line-height: 18px;
-    height: 150px;
-    margin-bottom: 40px;
-    width: 100px;
-  }
-  .legend-key {
-    display: inline-block;
-    border-radius: 20%;
-    width: 10px;
-    height: 10px;
-    margin-right: 5px;
-  }
+    body {
+      margin: 0;
+      padding: 0;
+    }
 
+    h2 {
+      margin: 10px;
+      font-size: 1.2em;
+      color: #000;
+    }
+
+    h3 {
+      margin: 10px;
+      font-size: 1em;
+      color: #000;
+    }
+
+    h4 {
+      margin: 10px;
+      color: #000;
+      font-size: 1em;
+      font-family: 'Helvetica', 'Sans-Serif';
+    }
+
+    p {
+      font-size: 0.85em;
+      margin: 10px;
+      text-align: left;
+      color: #000;
+    }
+
+    .map-overlay {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.8);
+      margin-right: 20px;
+      font-family: Arial, sans-serif;
+      overflow: auto;
+      border-radius: 3px;
+    }
+
+    #map {
+      height: 600px;
+    }
+
+    #features {
+      top: 400px;
+      height: 150px;
+      margin-top: 20px;
+      width: 250px;
+    }
+
+    #legend {
+      padding: 10px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      line-height: 18px;
+      height: 150px;
+      margin-bottom: 40px;
+      width: 100px;
+    }
+
+    .legend-key {
+      display: inline-block;
+      border-radius: 20%;
+      width: 10px;
+      height: 10px;
+      margin-right: 5px;
+    }
   </style>
   <!-- Adding styling info for page layout by reading in a CSS file -->
   <link rel="stylesheet" href="styles.css">
@@ -81,9 +89,10 @@
   <!-- Add multiple pages to web page-->
   <!-- active class displays the grey box around current page-->
   <ul>
-  	<li><a class="active" href="index.html" target="_self">Output 1</a>
-    <a href="mapbox-interaction.html" target="_self">Output 2</a>
-    <a href="mapbox-turfjs.html" target="_self">Output 3</a></li>
+    <li><a class="active" href="index.html" target="_self">Output 1</a>
+      <a href="mapbox-interaction.html" target="_self">Output 2</a>
+      <a href="mapbox-turfjs.html" target="_self">Output 3</a>
+    </li>
   </ul>
   <br>
 
@@ -92,7 +101,9 @@
   <!-- Add an information window -->
   <div class='map-overlay' id='features'>
     <h2>US population density</h2>
-    <div id='pd'><h3>Hover over a state!</h3></div>
+    <div id='pd'>
+      <h3>Hover over a state!</h3>
+    </div>
   </div>
   <!-- Add a legend to the map -->
   <div class='map-overlay' id='legend'></div>
@@ -167,18 +178,17 @@
 
         if (states.length > 0) {
           document.getElementById('pd').innerHTML =
-          '<h3><strong>' +
-          states[0].properties.name +
-          '</strong></h3><h4><strong><em>' +
-          states[0].properties.density +
-          '</strong> people per square mile</em></h4>';
+            '<h3><strong>' +
+            states[0].properties.name +
+            '</strong></h3><h4><strong><em>' +
+            states[0].properties.density +
+            '</strong> people per square mile</em></h4>';
         } else {
           document.getElementById('pd').innerHTML =
             '<h4>Hover over a state!</h4>';
         }
       });
     });
-
   </script>
 </body>
 
